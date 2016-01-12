@@ -49,9 +49,9 @@ func writeValues(dataSources []DataSource, event *event) {
     }
     
     for i := 0; i < event.SourceID; i++ {
-        go func() {
-            dataSources[i].Write(event.Result)
-        }();        
+        go func(dataSourceIndex int) {
+            dataSources[dataSourceIndex].Write(event.Result)
+        }(i);        
     }
 }
 
